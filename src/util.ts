@@ -12,4 +12,4 @@ function calcMeta(p) {
   p.breadcrumbRegularItems = regularPath.split('/').shift()
 }
 
-module.exports = { calcMeta }
+export { calcMeta }

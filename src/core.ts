@@ -7,4 +7,4 @@ function calcPageData(siteData, page) {
   page.breadcrumbItems = breadcrumbItems
 }
 
-module.exports = { calcSiteData, calcPageData }
+export { calcSiteData, calcPageData }

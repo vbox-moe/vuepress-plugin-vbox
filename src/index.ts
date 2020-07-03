@@ -1,7 +1,7 @@
-const { calcMeta } = require('./util')
-const { calcSiteData, calcPageData } = require('./core')
+import { calcPageData, calcSiteData } from './core'
+import { calcMeta } from './util'
 
-module.exports = (_, ctx) => {
+export default (_, ctx) => {
   return {
     name: 'vuepress-plugin-vbox',
     ready() {
