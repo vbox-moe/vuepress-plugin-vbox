@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "nodemon --watch src/**/*.ts --exec tsc -b"
   },
-  "files": ["dist/"],
+  "files": [
+    "dist/"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vbox-moe/vuepress-plugin-vbox.git"
