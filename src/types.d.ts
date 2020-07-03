@@ -13,11 +13,8 @@ declare type OriginalPage = {
   breadcrumbRegularItems?: string[]
   depth?: number
   frontmatter: PageFrontmatter
+  [key: string]: any
 }
-
-declare type CalculatedProduct = {}
-
-declare type CalculatedPage = {}
 
 declare type SidebarItem = {
   type: 'group' | 'auto'
@@ -28,10 +25,4 @@ declare type SidebarItem = {
   children: SidebarItem[]
 }
 
-export {
-  OriginalPage,
-  CalculatedProduct,
-  CalculatedPage,
-  PageFrontmatter,
-  SidebarItem,
-}
+export { OriginalPage, PageFrontmatter, SidebarItem }
