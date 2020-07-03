@@ -17,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/vbox-moe/vuepress-plugin-vbox/issues"
   },
-  "homepage": "https://github.com/vbox-moe/vuepress-plugin-vbox#readme"
+  "homepage": "https://github.com/vbox-moe/vuepress-plugin-vbox#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.4",
+    "typescript": "^3.9.6"
+  }
 }
