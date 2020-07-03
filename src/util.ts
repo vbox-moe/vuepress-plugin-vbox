@@ -3,6 +3,7 @@ import { OriginalPage } from './types'
 function calcDepth(str: string): number {
   let d = 0
   for (let i = 0; i < str.length; i++) if (str[i] === '/') d++
+  if (str[str.length - 1] === '/') d--
   return d
 }
 
