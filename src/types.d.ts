@@ -8,9 +8,9 @@ declare type PageFrontmatter = {
 declare type OriginalPage = {
   title: string
   regularPath: string
-  productRegularName: string
-  breadcrumbRegularItems: string[]
-  depth: number
+  productRegularName?: string
+  breadcrumbRegularItems?: string[]
+  depth?: number
   frontmatter: PageFrontmatter
 }
 
