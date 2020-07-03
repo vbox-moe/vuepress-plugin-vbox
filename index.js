@@ -4,12 +4,19 @@ function calcDepth(str) {
   return d
 }
 
-module.exports = {
-  name: 'vuepress-plugin-vbox',
-  extendPageData($page) {
-    const { regularPath } = $page
-    if (regularPath === '/') return
-    $page.depth = calcDepth(regularPath)
-    $page.productRegularName = regularPath.split('/')[1]
-  },
+function calcMeta(p) {
+  const { regularPath } = p
+  if (regularPath === '/') return
+  p.depth = calcDepth(regularPath)
+  p.productRegularName = regularPath.split('/')[1]
+}
+
+module.exports = (_, ctx) => {
+  return {
+    name: 'vuepress-plugin-vbox',
+    ready() {
+      const { pages } = ctx
+      pages.forEach((p) => calcMeta(p))
+    },
+  }
 }
