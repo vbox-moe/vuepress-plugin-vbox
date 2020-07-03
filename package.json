@@ -1,0 +1,21 @@
+{
+  "name": "vuepress-plugin-vbox",
+  "version": "0.1.0",
+  "description": "Plugin for VBox.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vbox-moe/vuepress-plugin-vbox.git"
+  },
+  "keywords": [
+    "vuepress",
+    "vbox",
+    "plugin"
+  ],
+  "author": "Il Harper",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vbox-moe/vuepress-plugin-vbox/issues"
+  },
+  "homepage": "https://github.com/vbox-moe/vuepress-plugin-vbox#readme"
+}
