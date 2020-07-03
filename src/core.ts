@@ -1,4 +1,6 @@
-function calcSiteData(pages) {}
+import { OriginalPage } from './types'
+
+function calcSiteData(pages: OriginalPage[]) {}
 
 function calcPageData(siteData, page) {
   const sidebarItems = {}
