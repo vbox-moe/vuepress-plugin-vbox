@@ -23,6 +23,7 @@ declare type SidebarItem = {
   basePath?: string
   path?: string
   children: SidebarItem[]
+  pageIndex?: number
 }
 
 export { OriginalPage, PageFrontmatter, SidebarItem }
