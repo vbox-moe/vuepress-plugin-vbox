@@ -1,6 +1,6 @@
 import { calcPageData, calcSiteData } from './core'
 import { OriginalPage } from './types'
-import { calcMeta } from './util'
+import { calcMeta, filterPagesData } from './util'
 
 export = function (_: any, ctx) {
   return {
@@ -8,7 +8,7 @@ export = function (_: any, ctx) {
     ready() {
       const pages: OriginalPage[] = ctx.pages
       pages.forEach((p) => calcMeta(p))
-      const siteData = calcSiteData(pages)
+      const siteData = calcSiteData(filterPagesData(pages))
       pages.forEach((p) => calcPageData(siteData, p))
     },
   }

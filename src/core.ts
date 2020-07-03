@@ -1,15 +1,24 @@
-import { OriginalPage } from './types'
+import { OriginalPage, SidebarItem } from './types'
+import { requireSidebar } from './util'
 
-function calcSiteData(pages: OriginalPage[]) {
+function calcSiteData(pages: OriginalPage[]): { [key: string]: SidebarItem[] } {
   const regularProduct: { [key: string]: OriginalPage[] } = {}
   for (const page of pages) {
-    if (!regularProduct[page.title]) regularProduct[page.title] = []
-    regularProduct[page.title].push(page)
+    if (!('productRegularName' in page)) continue
+    if (!regularProduct[page.productRegularName])
+      regularProduct[page.productRegularName] = []
+    if (requireSidebar(page)) regularProduct[page.productRegularName].push(page)
   }
-  console.info(regularProduct)
+  if ('undefined' in regularProduct) delete regularProduct.undefined
+  const result: { [key: string]: SidebarItem[] } = {}
+  return result
 }
 
-function calcPageData(siteData, page) {
+function calcPageData(
+  siteData: { [key: string]: SidebarItem[] },
+  page: OriginalPage
+): void {
+  if (!requireSidebar(page)) return
   const sidebarItems = {}
   const breadcrumbItems = {}
   page.sidebarItems = sidebarItems
