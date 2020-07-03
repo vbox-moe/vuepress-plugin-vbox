@@ -3,6 +3,7 @@ declare type PageFrontmatter = {
   heroText?: string
   description?: string
   pageIndex?: number
+  [key: string]: any
 }
 
 declare type OriginalPage = {
