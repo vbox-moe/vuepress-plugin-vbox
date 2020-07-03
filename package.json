@@ -2,7 +2,11 @@
   "name": "vuepress-plugin-vbox",
   "version": "0.1.0",
   "description": "Plugin for VBox.",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "nodemon --watch src/**/*.ts --exec tsc -b"
+  },
+  "files": ["dist/"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vbox-moe/vuepress-plugin-vbox.git"
