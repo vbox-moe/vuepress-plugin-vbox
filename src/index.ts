@@ -1,8 +1,8 @@
-import { calcPageData, calcSiteData } from './core'
+import { calcPageData, calcProductData, calcSiteData } from './core'
 import { OriginalPage } from './types'
 import { calcMeta, filterPagesData } from './util'
 
-export = function (_: any, ctx) {
+export = function (_: any, ctx: any): any {
   return {
     name: 'vuepress-plugin-vbox',
     ready() {
@@ -10,6 +10,7 @@ export = function (_: any, ctx) {
       pages.forEach((p) => calcMeta(p))
       const siteData = calcSiteData(filterPagesData(pages))
       pages.forEach((p) => calcPageData(siteData, p))
+      pages.forEach((p) => calcProductData(siteData, p))
     },
   }
 }

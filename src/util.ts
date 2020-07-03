@@ -12,9 +12,7 @@ function calcMeta(p: OriginalPage): void {
   if (regularPath === '/') return
   p.depth = calcDepth(regularPath)
   p.productRegularName = regularPath.split('/')[1]
-  const sp: string[] = regularPath.split('/')
-  sp.splice(0, 1)
-  p.breadcrumbRegularItems = sp
+  p.breadcrumbRegularItems = regularPath.split('/')
 }
 
 function filterPageData(p: OriginalPage): OriginalPage {
