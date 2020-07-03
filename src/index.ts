@@ -2,7 +2,7 @@ import { calcPageData, calcSiteData } from './core'
 import { OriginalPage } from './types'
 import { calcMeta } from './util'
 
-export default (_: any, ctx) => {
+export = function (_: any, ctx) {
   return {
     name: 'vuepress-plugin-vbox',
     ready() {
