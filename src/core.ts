@@ -16,13 +16,13 @@ function injectSidebarItemCore(
 ) {
   if (completedFlag.indexOf(prodPage.regularPath) > -1) return
   sidebar.push({
-    children: prodPage.isDetailPage ? undefined : [],
+    children: prodPage.isDetailPage ? null : [],
     title: prodPage.title,
     type: !prodPage.isDetailPage ? 'group' : 'auto',
     basePath: prodPage.regularPath,
     path: prodPage.regularPath,
     collapsable: !prodPage.isDetailPage,
-    pageIndex: prodPage.pageIndex,
+    pageIndex: prodPage.frontmatter.pageIndex,
   })
   sidebar.sort((a, b) => {
     if (!a.pageIndex || !b.pageIndex) return 0
@@ -102,7 +102,7 @@ function calcPageData(
 ): void {
   if (!requireSidebar(page)) return
   const sidebarItems = siteData[page.productRegularName]
-  const breadcrumbItems = {}
+  const breadcrumbItems = []
   page.sidebarItems = sidebarItems
   page.breadcrumbItems = breadcrumbItems
 }

@@ -29,7 +29,6 @@ function filterPageData(p: OriginalPage): OriginalPage {
     breadcrumbRegularItems: p.breadcrumbRegularItems,
     depth: p.depth,
     productRegularName: p.productRegularName,
-    pageIndex: p.pageIndex,
     isDetailPage: p.isDetailPage,
   }
 }
