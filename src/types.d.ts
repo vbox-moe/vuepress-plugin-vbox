@@ -12,6 +12,8 @@ declare type OriginalPage = {
   productRegularName?: string
   breadcrumbRegularItems?: string[]
   depth?: number
+  pageIndex?: number
+  isDetailPage?: boolean
   frontmatter: PageFrontmatter
   [key: string]: any
 }
