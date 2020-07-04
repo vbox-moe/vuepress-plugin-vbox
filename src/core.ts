@@ -45,7 +45,7 @@ function injectSidebarItem(
       let sidebarPointer: SidebarItem[] = sidebarResult
       for (
         let brIndex = 1;
-        brIndex <= p.breadcrumbRegularItems.length - 1;
+        brIndex <= p.breadcrumbRegularItems.length;
         brIndex++
       ) {
         let brConstruct = '/'
