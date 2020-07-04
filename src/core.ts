@@ -9,6 +9,29 @@ function isSidebarContains(sidebar: SidebarItem[], path: string) {
   return result
 }
 
+function injectSidebarItemCore(
+  prodPage: OriginalPage,
+  sidebar: SidebarItem[],
+  completedFlag: string[]
+) {
+  if (completedFlag.indexOf(prodPage.regularPath) > -1) return
+  sidebar.push({
+    children: prodPage.isDetailPage ? undefined : [],
+    title: prodPage.title,
+    type: !prodPage.isDetailPage ? 'group' : 'auto',
+    basePath: prodPage.regularPath,
+    path: prodPage.regularPath,
+    collapsable: !prodPage.isDetailPage,
+    pageIndex: prodPage.pageIndex,
+  })
+  sidebar.sort((a, b) => {
+    if (!a.pageIndex || !b.pageIndex) return 0
+    if (a.pageIndex > b.pageIndex) return 1
+    else return -1
+  })
+  completedFlag.push(prodPage.regularPath)
+}
+
 function injectSidebarItem(
   prodPages: OriginalPage[],
   sidebarResult: SidebarItem[],
@@ -21,7 +44,7 @@ function injectSidebarItem(
       let sidebarPointer: SidebarItem[] = sidebarResult
       for (
         let brIndex = 1;
-        brIndex <= p.breadcrumbRegularItems.length;
+        brIndex <= p.breadcrumbRegularItems.length - 1;
         brIndex++
       ) {
         if (brIndex <= removeDepth) continue
@@ -31,16 +54,17 @@ function injectSidebarItem(
         if (!isSidebarContains(sidebarPointer, brConstruct))
           prodPages.forEach((contPage) => {
             if (contPage.regularPath === brConstruct)
-              injectSidebarItem(
-                [contPage],
-                sidebarPointer,
-                completedFlag,
-                brIndex
-              )
+              injectSidebarItemCore(contPage, sidebarPointer, completedFlag)
           })
+        for (const sbPointer of sidebarPointer) {
+          if (sbPointer.path === brConstruct) {
+            sidebarPointer = sbPointer.children
+            break
+          }
+        }
       }
+      injectSidebarItemCore(p, sidebarPointer, completedFlag)
     }
-    completedFlag.push(p.regularPath)
   }
 }
 
@@ -77,7 +101,7 @@ function calcPageData(
   page: OriginalPage
 ): void {
   if (!requireSidebar(page)) return
-  const sidebarItems = {}
+  const sidebarItems = siteData[page.productRegularName]
   const breadcrumbItems = {}
   page.sidebarItems = sidebarItems
   page.breadcrumbItems = breadcrumbItems
