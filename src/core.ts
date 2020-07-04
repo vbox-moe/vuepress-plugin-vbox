@@ -158,11 +158,17 @@ function calcProductData(
           productRegularName: p.productRegularName,
           regularPath: p.regularPath,
           title: p.frontmatter.heroText,
+          pageIndex: p.frontmatter.pageIndex,
         })
         break
       }
     }
   }
+  productData.sort((a, b) => {
+    if (!a.pageIndex || !b.pageIndex) return 0
+    if (a.pageIndex > b.pageIndex) return 1
+    else return -1
+  })
   page.productData = productData
 }
 

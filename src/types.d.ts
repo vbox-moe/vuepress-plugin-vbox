@@ -23,6 +23,7 @@ declare type BreadCrumbItem = {
   title: string
   regularPath: string
   productRegularName: string
+  pageIndex?: number
 }
 
 declare type SidebarItem = {
