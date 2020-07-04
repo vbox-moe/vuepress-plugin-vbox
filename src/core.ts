@@ -1,12 +1,14 @@
 import { OriginalPage, SidebarItem } from './types'
 import { requireSidebar } from './util'
 
-function isSidebarContains(sidebar: SidebarItem[], path: string) {
-  let result = false
+function isSidebarContains(
+  sidebar: SidebarItem[],
+  path: string
+): OriginalPage | false {
   sidebar.forEach((item) => {
-    if (item.path === path) result = true
+    if (item.path === path) return item
   })
-  return result
+  return false
 }
 
 function injectSidebarItemCore(
