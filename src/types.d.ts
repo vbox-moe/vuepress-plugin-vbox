@@ -12,11 +12,14 @@ declare type OriginalPage = {
   productRegularName?: string
   breadcrumbRegularItems?: string[]
   depth?: number
-  pageIndex?: number
   isDetailPage?: boolean
   frontmatter: PageFrontmatter
-  [key: string]: any
+  // [key: string]: any
+  sidebarItems?: SidebarItem[]
+  breadcrumbItems?: BreadCrumbItem[]
 }
+
+declare type BreadCrumbItem = {}
 
 declare type SidebarItem = {
   type: 'group' | 'auto'
@@ -24,8 +27,8 @@ declare type SidebarItem = {
   title: string
   basePath?: string
   path?: string
-  children: SidebarItem[]
+  children?: SidebarItem[]
   pageIndex?: number
 }
 
-export { OriginalPage, PageFrontmatter, SidebarItem }
+export { OriginalPage, PageFrontmatter, SidebarItem, BreadCrumbItem }
