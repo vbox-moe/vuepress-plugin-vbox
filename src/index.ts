@@ -9,8 +9,8 @@ export = function (_: any, ctx: any): any {
       const pages: OriginalPage[] = ctx.pages
       pages.forEach((p) => calcMeta(p))
       const siteData = calcSiteData(filterPagesData(pages))
-      pages.forEach((p) => calcPageData(siteData, p))
-      pages.forEach((p) => calcProductData(siteData, p))
+      pages.forEach((p) => calcPageData(siteData, p, pages))
+      pages.forEach((p) => calcProductData(siteData, p, pages))
     },
   }
 }

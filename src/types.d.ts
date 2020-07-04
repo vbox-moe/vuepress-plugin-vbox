@@ -14,12 +14,16 @@ declare type OriginalPage = {
   depth?: number
   isDetailPage?: boolean
   frontmatter: PageFrontmatter
-  // [key: string]: any
   sidebarItems?: SidebarItem[]
   breadcrumbItems?: BreadCrumbItem[]
+  productData?: BreadCrumbItem[]
 }
 
-declare type BreadCrumbItem = {}
+declare type BreadCrumbItem = {
+  title: string
+  regularPath: string
+  productRegularName: string
+}
 
 declare type SidebarItem = {
   type: 'group' | 'auto'

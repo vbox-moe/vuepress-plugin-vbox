@@ -1,4 +1,4 @@
-import { OriginalPage, SidebarItem } from './types'
+import { BreadCrumbItem, OriginalPage, SidebarItem } from './types'
 import { requireSidebar } from './util'
 
 function isSidebarContains(
@@ -15,7 +15,7 @@ function injectSidebarItemCore(
   prodPage: OriginalPage,
   sidebar: SidebarItem[],
   completedFlag: string[]
-) {
+): void {
   if (completedFlag.indexOf(prodPage.regularPath) > -1) return
   sidebar.push({
     children: [],
@@ -37,8 +37,7 @@ function injectSidebarItemCore(
 function injectSidebarItem(
   prodPages: OriginalPage[],
   sidebarResult: SidebarItem[],
-  completedFlag: string[],
-  removeDepth: number
+  completedFlag: string[]
 ): void {
   for (const p of prodPages) {
     if (completedFlag.indexOf(p.regularPath) > -1) continue
@@ -49,7 +48,6 @@ function injectSidebarItem(
         brIndex <= p.breadcrumbRegularItems.length - 1;
         brIndex++
       ) {
-        if (brIndex <= removeDepth) continue
         let brConstruct = '/'
         for (let brConsIndex = 0; brConsIndex < brIndex; brConsIndex++)
           brConstruct += p.breadcrumbRegularItems[brConsIndex] + '/'
@@ -90,7 +88,7 @@ function calcSiteData(pages: OriginalPage[]): { [key: string]: SidebarItem[] } {
     // Construct Flag
     const completedFlag: string[] = []
 
-    injectSidebarItem(prodPages, sidebarResult, completedFlag, 1)
+    injectSidebarItem(prodPages, sidebarResult, completedFlag)
 
     // Push Result
     result[product] = sidebarResult
@@ -98,20 +96,74 @@ function calcSiteData(pages: OriginalPage[]): { [key: string]: SidebarItem[] } {
   return result
 }
 
+function calcBreadcrumbItems(
+  page: OriginalPage,
+  pages: OriginalPage[]
+): BreadCrumbItem[] {
+  const result: BreadCrumbItem[] = []
+  for (const p of pages) {
+    if (p.regularPath === `/${page.productRegularName}/`) {
+      result.push({
+        productRegularName: p.productRegularName,
+        regularPath: p.regularPath,
+        title: p.frontmatter.heroText,
+      })
+      break
+    }
+  }
+  if (page.depth > 1) {
+    for (
+      let brIndex = 1;
+      brIndex <= page.breadcrumbRegularItems.length - 1;
+      brIndex++
+    ) {
+      let brConstruct = '/'
+      for (let brConsIndex = 0; brConsIndex < brIndex; brConsIndex++)
+        brConstruct += page.breadcrumbRegularItems[brConsIndex] + '/'
+      for (const p of pages) {
+        if (p.regularPath === brConstruct)
+          result.push({
+            title: p.title,
+            regularPath: p.regularPath,
+            productRegularName: p.productRegularName,
+          })
+      }
+    }
+  }
+  return result
+}
+
 function calcPageData(
   siteData: { [key: string]: SidebarItem[] },
-  page: OriginalPage
+  page: OriginalPage,
+  pages: OriginalPage[]
 ): void {
   if (!requireSidebar(page)) return
   const sidebarItems = siteData[page.productRegularName]
-  const breadcrumbItems = []
   page.sidebarItems = sidebarItems
-  page.breadcrumbItems = breadcrumbItems
+  page.breadcrumbItems = calcBreadcrumbItems(page, pages)
 }
 
 function calcProductData(
   siteData: { [key: string]: SidebarItem[] },
-  page: OriginalPage
-): void {}
+  page: OriginalPage,
+  pages: OriginalPage[]
+): void {
+  if (page.regularPath !== '/') return
+  const productData: BreadCrumbItem[] = []
+  for (const prodName in siteData) {
+    for (const p of pages) {
+      if (p.regularPath === `/${prodName}/`) {
+        productData.push({
+          productRegularName: p.productRegularName,
+          regularPath: p.regularPath,
+          title: p.frontmatter.heroText,
+        })
+        break
+      }
+    }
+  }
+  page.productData = productData
+}
 
 export { calcSiteData, calcPageData, calcProductData }
