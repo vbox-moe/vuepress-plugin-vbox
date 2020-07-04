@@ -16,7 +16,7 @@ function injectSidebarItemCore(
 ) {
   if (completedFlag.indexOf(prodPage.regularPath) > -1) return
   sidebar.push({
-    children: prodPage.isDetailPage ? null : [],
+    children: [],
     title: prodPage.title,
     type: !prodPage.isDetailPage ? 'group' : 'auto',
     basePath: prodPage.regularPath,

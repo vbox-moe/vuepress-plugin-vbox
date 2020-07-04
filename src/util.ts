@@ -14,7 +14,7 @@ function calcMeta(p: OriginalPage): void {
   p.productRegularName = regularPath.split('/')[1]
   const sp: string[] = regularPath.split('/')
   sp.splice(0, 1)
-  if (sp[sp.length - 1] === '') {
+  if (sp[sp.length - 1] !== '') {
     p.isDetailPage = true
     sp.pop()
   } else p.isDetailPage = false
