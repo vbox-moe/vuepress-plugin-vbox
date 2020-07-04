@@ -26,11 +26,7 @@ function injectSidebarItemCore(
     collapsable: !prodPage.isDetailPage,
     pageIndex: prodPage.frontmatter.pageIndex,
   })
-  sidebar.sort((a, b) => {
-    if (!a.pageIndex || !b.pageIndex) return 0
-    if (a.pageIndex > b.pageIndex) return 1
-    else return -1
-  })
+  sidebar.sort((a, b) => a.pageIndex - b.pageIndex)
   completedFlag.push(prodPage.regularPath)
 }
 
@@ -164,11 +160,7 @@ function calcProductData(
       }
     }
   }
-  productData.sort((a, b) => {
-    if (!a.pageIndex || !b.pageIndex) return 0
-    if (a.pageIndex > b.pageIndex) return 1
-    else return -1
-  })
+  productData.sort((a, b) => a.pageIndex - b.pageIndex)
   page.productData = productData
   page.authorCount = calcAuthorCount(pages)
 }
