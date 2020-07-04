@@ -46,4 +46,18 @@ function requireSidebar(page: OriginalPage): boolean {
   return true
 }
 
-export { calcMeta, filterPagesData, requireSidebar }
+function calcAuthorCount(pages: OriginalPage[]): number {
+  const emailList: string[] = []
+  let num: number = 0
+  for (const page of pages) {
+    for (const author of page.authors) {
+      if (emailList.indexOf(author.email) === -1) {
+        emailList.push(author.email)
+        num++
+      }
+    }
+  }
+  return num
+}
+
+export { calcMeta, filterPagesData, requireSidebar, calcAuthorCount }

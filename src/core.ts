@@ -1,5 +1,5 @@
 import { BreadCrumbItem, OriginalPage, SidebarItem } from './types'
-import { requireSidebar } from './util'
+import { calcAuthorCount, requireSidebar } from './util'
 
 function isSidebarContains(
   sidebar: SidebarItem[],
@@ -170,6 +170,7 @@ function calcProductData(
     else return -1
   })
   page.productData = productData
+  page.authorCount = calcAuthorCount(pages)
 }
 
 export { calcSiteData, calcPageData, calcProductData }

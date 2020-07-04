@@ -17,6 +17,7 @@ declare type OriginalPage = {
   sidebarItems?: SidebarItem[]
   breadcrumbItems?: BreadCrumbItem[]
   productData?: BreadCrumbItem[]
+  [key: string]: any
 }
 
 declare type BreadCrumbItem = {
