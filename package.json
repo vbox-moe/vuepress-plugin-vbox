@@ -28,7 +28,6 @@
     "chalk": "^2.4.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4",
     "typescript": "^3.9.6",
     "@types/node": "^13.5.3"
   }
