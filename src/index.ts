@@ -8,7 +8,11 @@ export = function (_: any, ctx: any): any {
   return {
     name: 'vuepress-plugin-vbox',
     ready() {
-      console.log(chalk.green(`VBox Plugin for VuePress - ${process.version}`))
+      console.log(
+        chalk.green(
+          `VBox Plugin for VuePress - v${require('../package.json').version}`
+        )
+      )
       info('Starting Collecting Data...')
       const pages: OriginalPage[] = ctx.pages
       info('Collecting Meta...')
