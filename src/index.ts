@@ -17,12 +17,12 @@ export = function (_: any, ctx: any): any {
       const pages: OriginalPage[] = ctx.pages
       info('Collecting Meta...')
       pages.forEach((p) => calcMeta(p))
-      success(`Calcutated meta for ${pages.length} pages.`)
+      success('Calcutated meta for ', String(pages.length), 'pages.')
       info('Calculating Site Data...')
       const siteData = calcSiteData(filterPagesData(pages))
       info('Calculating Page Data...')
       pages.forEach((p) => calcPageData(siteData, p, pages))
-      success(`Calcutated data for ${pages.length} pages.`)
+      success('Calcutated data for ', String(pages.length), 'pages.')
       pages.forEach((p) => calcProductData(siteData, p, pages))
       success('Complete. Building website now.')
     },
