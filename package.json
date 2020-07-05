@@ -1,6 +1,6 @@
 {
   "name": "vuepress-plugin-vbox",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Plugin for VBox.",
   "main": "dist/index.js",
   "scripts": {
