@@ -14,7 +14,10 @@ export = function (_: any, ctx: any): any {
         )
       )
       info('Starting Collecting Data...')
-      const pages: OriginalPage[] = ctx.pages
+      const originalPages: OriginalPage[] = ctx.pages
+      const pages = originalPages.filter(
+        (p) => p.regularPath !== '/login/' && p.regularPath !== '/editor/'
+      )
       info('Collecting Meta...')
       pages.forEach((p) => calcMeta(p))
       success('Calcutated meta for ', String(pages.length), 'pages.')
