@@ -1,3 +1,4 @@
+import { info, success } from './log'
 import { OriginalPage } from './types'
 
 function calcDepth(str: string): number {
@@ -9,6 +10,7 @@ function calcDepth(str: string): number {
 
 function calcMeta(p: OriginalPage): void {
   const { regularPath } = p
+  info(`Collecting Meta for ${regularPath}...`)
   if (regularPath === '/') return
   p.depth = calcDepth(regularPath)
   p.productRegularName = regularPath.split('/')[1]
@@ -47,6 +49,7 @@ function requireSidebar(page: OriginalPage): boolean {
 }
 
 function calcAuthorCount(pages: OriginalPage[]): number {
+  info('Calculating Author Data...')
   const emailList: string[] = []
   let num: number = 0
   for (const page of pages) {
@@ -57,6 +60,7 @@ function calcAuthorCount(pages: OriginalPage[]): number {
       }
     }
   }
+  success(`Find ${num} Authors.`)
   return num
 }
 

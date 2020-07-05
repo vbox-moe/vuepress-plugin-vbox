@@ -1,3 +1,4 @@
+import { info, success } from './log'
 import { BreadCrumbItem, OriginalPage, SidebarItem } from './types'
 import { calcAuthorCount, requireSidebar } from './util'
 
@@ -36,6 +37,7 @@ function injectSidebarItem(
   completedFlag: string[]
 ): void {
   for (const p of prodPages) {
+    info(`Injecting Items for ${p.regularPath}...`)
     if (completedFlag.indexOf(p.regularPath) > -1) continue
     if (p.depth > 1) {
       let sidebarPointer: SidebarItem[] = sidebarResult
@@ -146,6 +148,7 @@ function calcProductData(
   pages: OriginalPage[]
 ): void {
   if (page.regularPath !== '/') return
+  info('Calculating Product Data...')
   const productData: BreadCrumbItem[] = []
   for (const prodName in siteData) {
     for (const p of pages) {
@@ -162,7 +165,9 @@ function calcProductData(
   }
   productData.sort((a, b) => a.pageIndex - b.pageIndex)
   page.productData = productData
+  success(`Find ${productData.length} Products.`)
   page.authorCount = calcAuthorCount(pages)
 }
 
 export { calcSiteData, calcPageData, calcProductData }
+
