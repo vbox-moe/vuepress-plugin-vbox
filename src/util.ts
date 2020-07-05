@@ -10,7 +10,7 @@ function calcDepth(str: string): number {
 
 function calcMeta(p: OriginalPage): void {
   const { regularPath } = p
-  info(`Collecting Meta for ${regularPath}...`)
+  info('Collecting Meta for', regularPath, '...')
   if (regularPath === '/') return
   p.depth = calcDepth(regularPath)
   p.productRegularName = regularPath.split('/')[1]
@@ -60,7 +60,7 @@ function calcAuthorCount(pages: OriginalPage[]): number {
       }
     }
   }
-  success(`Find ${num} Authors.`)
+  success('Find', String(num), 'Authors.')
   return num
 }
 

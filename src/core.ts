@@ -37,7 +37,7 @@ function injectSidebarItem(
   completedFlag: string[]
 ): void {
   for (const p of prodPages) {
-    info('Injecting Items for ', p.regularPath, '...')
+    info('Injecting Items for', p.regularPath, '...')
     if (completedFlag.indexOf(p.regularPath) > -1) continue
     if (p.depth > 1) {
       let sidebarPointer: SidebarItem[] = sidebarResult
@@ -165,7 +165,7 @@ function calcProductData(
   }
   productData.sort((a, b) => a.pageIndex - b.pageIndex)
   page.productData = productData
-  success('Find ', String(productData.length), 'products.')
+  success('Find', String(productData.length), 'products.')
   page.authorCount = calcAuthorCount(pages)
 }
 
