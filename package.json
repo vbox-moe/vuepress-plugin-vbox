@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/vbox-moe/vuepress-plugin-vbox#readme",
   "dependencies": {
-    "chalk": "^2.4.2"
+    "chalk": "^4.1.0"
   },
   "devDependencies": {
     "typescript": "^3.9.6",
