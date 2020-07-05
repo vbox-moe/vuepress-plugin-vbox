@@ -26,5 +26,19 @@ export = function (_: any, ctx: any): any {
       pages.forEach((p) => calcProductData(siteData, p, pages))
       success('Complete. Building website now.')
     },
+    additionalPages: [
+      {
+        path: '/login/',
+        frontmatter: {
+          layout: 'Login',
+        },
+      },
+      {
+        path: '/editor/',
+        frontmatter: {
+          layout: 'Editor',
+        },
+      },
+    ],
   }
 }
